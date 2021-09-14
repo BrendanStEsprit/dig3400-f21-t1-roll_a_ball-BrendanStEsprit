@@ -48,6 +48,10 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
         rb.AddForce(movement * speed);
+        if (lives == 0)
+        {
+            Destroy(this);
+        }
     }
     void OnTriggerEnter(Collider other)
     {
@@ -71,11 +75,11 @@ public class PlayerController : MonoBehaviour
     void SetCountText ()
     {
         countText.text = "Count: " + count.ToString();
-        if (count >= 16)
+        if (count >= 21)
         {
             winText.text = "You're Winner!, Made By Brendan St.Esprit";
         }
-        if (count >= 10)
+        if (count == 10)
         {
             transform.position = new Vector3(-8.65f, 15.3f, 96.7f); 
         }
@@ -92,12 +96,6 @@ public class PlayerController : MonoBehaviour
             
         }
     }
-    void DestroyScriptInstance()
-    {
-        if (lives == 0)
-        {
-            Destroy(this);
-        }
-    }
+   
 
 }
